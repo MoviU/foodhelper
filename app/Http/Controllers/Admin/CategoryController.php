@@ -58,7 +58,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.category.show', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -97,8 +99,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $places = Place::orderBy('created_at', 'desc')->get();
+        $category->places()->detach($places);
         $category->delete();
-
+        
         return redirect()->back()->with('Success', 'Категория была успешно удалена!');
     }
 }

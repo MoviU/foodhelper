@@ -57,20 +57,27 @@
                                               {{ $place['id'] }}
                                           </td>
                                           <td>
-                                              <a>
+                                              <a href="{{ route('places.show', $place['id']) }}">
                                                   {{ $place['title'] }}
                                               </a>
                                              <br>
                                               <small>
                                                   {{ __('Создано') }} {{ $place['created_at'] }}
+                                                  <br>
+                                                  {{ __('Обновлено') }} {{ $place['updated_at'] }}
                                               </small>
                                       </td>
                                           <td>
-                                              {{ $place->category['title'] }}
+                                              @foreach($place->categories as $category)
+                                              <a href="{{ route('category.show', $category['id']) }}">
+                                                  {{ $category['title'] }}.
+                                              </a>
+                                              @endforeach
                                           </td>
                                           <td class="project-actions text-right">
                                               <a class="btn btn-info btn-sm" href="{{ route('places.show', $place['id']) }}">
-                                                Посмотреть
+                                                  <i class="fas fa-eye"></i>
+                                                {{ __('Посмотреть') }}
                                               </a>
                                               <a class="btn btn-warning btn-sm" href="{{ route('places.edit', $place['id']) }}">
                                                   <i class="fas fa-pencil-alt">

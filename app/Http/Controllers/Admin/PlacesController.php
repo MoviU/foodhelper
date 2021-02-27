@@ -49,14 +49,14 @@ class PlacesController extends Controller
 
         $category = Category::find($request->cat_id);
 
-        $place = new Place();
+        $place         = new Place();
         $place->title  = $request->title;
         $place->img    = $request->img;
         $place->text   = $request->text;
-        $place->cat_id = $request->cat_id;
         $place->adress = $request->adress;
 
-        $category->places()->save($place);
+        $place->save();
+        $place->categories()->attach($category);
 
         return redirect()->back()->with('Success', 'Заведение было успешно добавлено!');
     }
@@ -82,11 +82,12 @@ class PlacesController extends Controller
      */
     public function edit(Place $place)
     {
-        $categories = Category::orderBy('created_at', 'desc')->get();
-
+        $cats = Category::orderBy('created_at', 'desc')->get();
+        $cat = $place->categories;
         return view('admin.places.edit', [
-            'categories' => $categories,
-            'place'     => $place
+            'cats'       => $cats,
+            'place'      => $place,
+            'cat'        => $cat
         ]);
     }
 
@@ -99,11 +100,17 @@ class PlacesController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        $categories = Category::orderBy('created_at', 'desc')->get();
+        $place->categories()->detach($categories);
+        
+        $category = Category::find($request->cat_id);
+        $place->categories()->attach($category);
+
         $place->title  = $request->title;
         $place->adress = $request->adress;
-        $place->cat_id = $request->cat_id;
         $place->img    = $request->img;
         $place->text   = $request->text;
+
         $place->save();
 
         return redirect()->back()->with('Success', 'Заведение было успешно обновлено!');
@@ -117,8 +124,10 @@ class PlacesController extends Controller
      */
     public function destroy(Place $place)
     {
+        $categories = Category::orderBy('created_at', 'desc')->get();
+        $place->categories()->detach($categories);
         $place->delete();
 
-        return redirect()->back()->with('Success', 'Ресторан біл успешно удален!');
+        return redirect()->back()->with('Success', 'Ресторан был успешно удален!');
     }
 }

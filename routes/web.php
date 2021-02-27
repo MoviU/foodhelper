@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlacesController;
+use App\Http\Controllers\Admin\UserController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +19,5 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
 
     Route::resource('category', CategoryController::class);
     Route::resource('places', PlacesController::class);
+    Route::resource('user', UserController::class);
 });

@@ -49,7 +49,7 @@
                     <label>Выберите категорию</label>
                     <select name="cat_id" class="form-control" required>
                         @foreach($categories as $category)
-                        <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
+                            <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
                         @endforeach
                     </select>
                   </div>

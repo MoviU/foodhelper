@@ -47,11 +47,15 @@
                   <!-- select -->
                   <div class="form-group">
                     <label>{{ __('Категория заведения') }}</label>
-                    <select name="cat_id" class="form-control" required>
-                        @foreach($categories as $category)
-                            <option value="{{ $category['id'] }}" @if($category['id'] == $place['cat_id']) selected @endif>{{ $category['title'] }}</option>
+                    <div class="row">
+                    @foreach($cat as $selected_cat)
+                    <select name="cat_id" class="form-control col-sm-{{ floor(12 / count($cat)) }}" required>
+                        @foreach($cats as $category)
+                            <option value="{{ $category['id'] }}" @if($category['id'] == $selected_cat->id) selected @endif>{{ $category['title'] }}</option>
                         @endforeach
                     </select>
+                    @endforeach
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">

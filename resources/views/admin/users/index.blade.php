@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">{{ __('Все категории') }}</h1>
+          <h1 class="m-0">{{ __('Все пользователи') }}</h1>
         </div><!-- /.col -->
       </div><!-- /.row -->
       @if(session('Success'))
@@ -17,7 +17,6 @@
           </div>
       @endif
     </div><!-- /.container-fluid -->
-
   </div>
 <section class="content">
     <div class="container-fluid">
@@ -26,7 +25,7 @@
                     <div class="col-12">
                             <div class="card">
                               <div class="card-header">
-                                <h3 class="card-title">{{ __('Все категории') }}</h3>
+                                <h3 class="card-title">{{ __('Все пользователи') }}</h3>
 
                                 <div class="card-tools">
                                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,40 +45,43 @@
                                   <thead>
                                     <tr>
                                       <th>ID</th>
-                                      <th>{{ __('Название') }}</th>
-                                      <th>{{ __('Заведения') }}</th>
+                                      <th>{{ __('Имя') }}</th>
+                                      <th>{{ __('Роль') }}</th>
                                       <th>{{ __('Действия') }}</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                      @foreach($categories as $category)
+                                      @foreach($users as $user)
                                     <tr>
                                       <td>
-                                          {{ $category->id }}
+                                          {{ $user['id'] }}
                                       </td>
                                       <td>
-                                          <a href="{{ route('category.show', $category->id) }}">
-                                          {{ $category->title }}
-                                      </a>
-                                      <br>
-                                      <small>
-                                          {{ __('Создано') }} {{ $category->created_at }}
-                                          <br>
-                                          {{ __('Обновлено') }} {{ $category['updated_at'] }}
-                                      </small>
+                                          <a href="">
+                                              {{ $user['name'] }}
+                                          </a>
+                                         <br>
+                                          <small>
+                                              {{ __('Зарегистрировался') }} {{ $user['created_at'] }}
+                                              <br>
+                                              {{ __('Обновлено') }} {{ $user['updated_at'] }}
+                                          </small>
                                   </td>
                                       <td>
-                                          @foreach($category->places as $place)
-                                              <a href="{{ route('places.show', $place['id']) }}">{{ $place['title'] }}.</a>
-                                          @endforeach
+                                            
                                       </td>
                                       <td class="project-actions text-right">
-                                          <a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category['id']) }}">
+                                          <a class="btn btn-info btn-sm" href="">
+                                              <i class="fas fa-eye"></i>
+                                            {{ __('Посмотреть') }}
+                                          </a>
+                                          <a class="btn btn-warning btn-sm" href="">
                                               <i class="fas fa-pencil-alt">
                                               </i>
                                               {{ __('Изменить') }}
                                           </a>
-                                          <form action="{{ route('category.destroy', $category['id']) }}" method="POST" class="in-bl">
+
+                                          <form action="" method="POST" class="in-bl">
                                               @csrf
                                               @method('DELETE')
                                               <button type="submit" class="btn btn-danger btn-sm delete-btn">
@@ -105,4 +107,5 @@
     </section>
     <!-- /Main Content -->
     </div>
+
 @endsection

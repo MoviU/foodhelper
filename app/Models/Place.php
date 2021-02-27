@@ -9,8 +9,8 @@ class Place extends Model
 {
     use HasFactory;
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class, 'cat_id');
+        return $this->belongsToMany(Category::class);
     }
 }
