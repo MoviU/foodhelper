@@ -49,6 +49,10 @@
                                   </div>
                                   <div class="card-footer">
                                       <div class="text-right">
+                                         <a class="btn btn-primary btn-sm" href="{{ route('place.show', $place['id']) }}">
+                                             <i class="fas fa-eye"></i>
+                                             {{ __('Посмотреть на сайте') }}
+                                        </a>
                                       <a class="btn btn-warning btn-sm" href="{{ route('places.edit', $place['id']) }}">
                                           <i class="fas fa-pencil-alt">
                                           </i>

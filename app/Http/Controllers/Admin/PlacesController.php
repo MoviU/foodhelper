@@ -84,6 +84,7 @@ class PlacesController extends Controller
     {
         $cats = Category::orderBy('created_at', 'desc')->get();
         $cat = $place->categories;
+        
         return view('admin.places.edit', [
             'cats'       => $cats,
             'place'      => $place,
@@ -102,7 +103,7 @@ class PlacesController extends Controller
     {
         $categories = Category::orderBy('created_at', 'desc')->get();
         $place->categories()->detach($categories);
-        
+
         $category = Category::find($request->cat_id);
         $place->categories()->attach($category);
 

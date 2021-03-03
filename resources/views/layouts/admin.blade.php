@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
   <link href="/admin/dist/css/colorbox.css" rel="stylesheet">
   <script src="https://cdn.tiny.cloud/1/4quc1zp0voa7m3aam2zs3hthlh8tybuf3ulkm1kxbfmc2of8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <livewire:styles />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -108,22 +109,24 @@
               </li>
             </ul>
           </li>
+          @hasrole('SuperAdmin')
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-users"></i>
-              <p>
-                {{ __('Пользователи') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link ">
-                  <p>{{ __('Все пользователи') }}</p>
-                </a>
-              </li>
-            </ul>
+              <a href="#" class="nav-link">
+                <i class="fas fa-users"></i>
+                <p>
+                  {{ __('Пользователи') }}
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('users.index') }}" class="nav-link ">
+                    <p>{{ __('Найти пользователя') }}</p>
+                  </a>
+                </li>
+              </ul>
           </li>
+          @endhasrole
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -163,7 +166,7 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="fas fa-chevron-circle-down"></i>        </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="{{ route('home') }}" class="dropdown-item">
+          <a href="{{ url('/') }}" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
                 <i class="fas fa-home"></i>
@@ -249,5 +252,6 @@
 <script src="/admin/admin.js"></script>
 <script type="text/javascript" src="/admin/dist/js/jquery.colorbox-min.js"></script>
 <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.js"></script>
+<livewire:scripts />
 </body>
 </html>
