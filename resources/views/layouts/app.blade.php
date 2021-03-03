@@ -42,25 +42,25 @@
                     <ul class="navbar-nav ml-auto">
                         @if(Route::has('restaurants'))
                         <li class="nav-item">
-                            <a class="btn btn-light mr-sm-4" href="{{ route('restaurants') }}">{{ __('Забронировать') }}</a>
+                            <a class="btn btn-light mr-sm-4 mt-2 mt-sm-0" href="{{ route('restaurants') }}">{{ __('Забронировать') }}</a>
                         </li>
                         @endif
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="btn btn-primary mr-sm-1" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="btn btn-primary mr-sm-1 mt-2 mt-sm-0" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="btn btn-primary mr-sm-1" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="btn btn-primary mr-sm-1 mt-2 mt-sm-0" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle btn btn-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="dropdown-toggle btn btn-primary mt-2 mt-sm-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

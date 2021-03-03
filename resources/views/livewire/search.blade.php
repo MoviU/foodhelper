@@ -6,6 +6,7 @@
 <div class="row">
     <div class="col-sm-10 offset-sm-1">
     <ul class="list-group overflow-auto">
+        {{ $users->onEachSide(1)->links() }}
         @foreach($users as $user)
             <li class="list-group-item">
                 <a href="{{ route('users.edit', $user['id']) }}">
@@ -18,9 +19,10 @@
                 </p>
 
             </li>
-
         @endforeach
+
     </ul>
+
     </div>
     </div>
 </div>
