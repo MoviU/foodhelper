@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container">
+        {{ $places->onEachSide(1)->links() }}
         <div class="row">
             @foreach($places as $place)
-                <div class="col-sm-4 col-md-6 col-lg-4 mt-4">
+                <div class="col-sm-4 col-md-6 mb-3 col-lg-4 mt-4">
                     <div class="card p-auto">
                         <div class="card-header col-12">
                             <p class="text-center">{{ $place->title }}</p>
@@ -22,5 +23,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $places->onEachSide(1)->links() }}
     </div>
 @endsection

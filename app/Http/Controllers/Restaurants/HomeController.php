@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $places = Place::orderBy('created_at', 'desc')->get();
+        $places = Place::orderBy('created_at', 'desc')->paginate(3);
 
         return view('places.index', [
             'places' => $places
