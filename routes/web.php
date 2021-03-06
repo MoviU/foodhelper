@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\AvatarController;
 
 use App\Http\Controllers\Restaurants\HomeController;
 
@@ -34,4 +35,5 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('profile','profile')->name('profile');
+    Route::post('profile/picture', [AvatarController::class, 'create'])->name('avatarUpload');
 });

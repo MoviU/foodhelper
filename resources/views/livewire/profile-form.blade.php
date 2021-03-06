@@ -40,6 +40,14 @@
                         <button type="submit" class="btn btn-primary">{{ __('Update Info') }}</button>
                     </div>
             </form>
+            <div class="form-group">
+                <form class="" action="{{ route('avatarUpload', Auth::user()->id) }}" method="POST" enctype="multipart/form-data" >
+                    @csrf
+                    <label for="img">{{ __('Profile photo (optional)') }}</label>
+                    <input type="file" name="img" class="form-control" id="img">
+                    <input type="submit" class="btn btn-default" value="Отправить">
+                </form>
+            </div>
         </div>
     </div>
 </section>
